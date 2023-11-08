@@ -55,11 +55,16 @@ print(label_X_train.columns)
 numerical_cols = [cname for cname in x_train_full.columns if x_train_full[cname].dtype in ['int64', 'float64']]
 
 # Define the models
-model_2 = RandomForestRegressor(n_estimators=100, random_state=0)
+model_2 = RandomForestRegressor(n_estimators=10, random_state=0)
 
-
+print(label_X_train.head())
 mae = score_model(model_2,label_X_train,label_X_valid, y_train, y_valid)
 print("Model MAE: ", mae)
+
+
+print ('Saving model...')
+
+dump(model_2, pathlib.Path('model/model_ps.joblib'))
 
 # # Keep selected columns only
 # my_cols = object_cols + numerical_cols
@@ -75,14 +80,5 @@ print("Model MAE: ", mae)
 
 # print(X_train.head())
 
-
-# # # ----
-# clf.fit(X_train, y_train)
-# y_pred = clf.predict(X_test)
-
-# print ('Saving model...')
-
-# # dump(clf, pathlib.Path('../model/model_ps.joblib'))
-# df.drop(["Unnamed: 0"], inplace = True, axis =1 )
 
 
